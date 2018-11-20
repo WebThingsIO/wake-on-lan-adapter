@@ -1,0 +1,67 @@
+{
+  "name": "wake-on-lan-adapter",
+  "display_name": "Wake-on-LAN",
+  "version": "0.0.1",
+  "description": "Wake-on-LAN adapter.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mozilla-iot/wake-on-lan-adapter.git"
+  },
+  "keywords": [
+    "mozilla",
+    "iot",
+    "adapter",
+    "wake-on-lan",
+    "wol"
+  ],
+  "author": "Mozilla IoT",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/mozilla-iot/wake-on-lan-adapter/issues"
+  },
+  "homepage": "https://github.com/mozilla-iot/wake-on-lan-adapter#readme",
+  "dependencies": {
+    "wol": "^1.0.5"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.9.0"
+  },
+  "files": [
+    "LICENSE",
+    "SHA256SUMS",
+    "index.js",
+    "node_modules"
+  ],
+  "moziot": {
+    "api": {
+      "min": 2,
+      "max": 2
+    },
+    "plugin": true,
+    "exec": "{nodeLoader} {path}",
+    "config": {
+      "devices": []
+    },
+    "schema": {
+      "type": "object",
+      "required": [
+        "devices"
+      ],
+      "properties": {
+        "devices": {
+          "type": "array",
+          "items": {
+            "description": "MAC address",
+            "type": "string",
+            "pattern": "^([0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}$"
+          }
+        }
+      }
+    }
+  }
+}
