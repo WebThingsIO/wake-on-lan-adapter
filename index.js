@@ -8,12 +8,15 @@ const {promise: ping} = require('ping');
 class WakeOnLanAdapter extends Adapter {
   static getDeviceInfoFromArpTable(mac, arpDevices = []) {
     const normalizedMac = mac.toLowerCase();
-    const arpDevice = arpDevices.find((d) => d.mac.toLowerCase() === normalizedMac);
+    const arpDevice =
+      arpDevices.find((d) => d.mac.toLowerCase() === normalizedMac);
+
     if (arpDevice) {
       // de-normalize mac so device ID stays the same.
       arpDevice.mac = mac;
       return arpDevice;
     }
+
     return {
       mac: mac,
       name: '?',
@@ -32,7 +35,8 @@ class WakeOnLanAdapter extends Adapter {
       .catch(console.warn)
       .then((devices) => {
         for (const mac of manifest.moziot.config.devices) {
-          const arpDevice = WakeOnLanAdapter.getDeviceInfoFromArpTable(mac, devices);
+          const arpDevice =
+            WakeOnLanAdapter.getDeviceInfoFromArpTable(mac, devices);
           this.addDevice(arpDevice);
         }
       });
@@ -77,7 +81,8 @@ class WakeOnLanAdapter extends Adapter {
         if (info) {
           device.checkPing(info.ip);
         } else {
-          // Not in ARP table, so as far as we know the device is not in the network.
+          // Not in ARP table, so as far as we know the device is not on the
+          // network.
           device.setOn(false);
         }
       }
