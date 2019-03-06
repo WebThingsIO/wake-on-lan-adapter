@@ -25,6 +25,8 @@
   },
   "homepage": "https://github.com/mozilla-iot/wake-on-lan-adapter#readme",
   "dependencies": {
+    "local-devices": "^2.0.0",
+    "ping": "^0.2.2",
     "wol": "^1.0.5"
   },
   "devDependencies": {
@@ -45,7 +47,8 @@
     "plugin": true,
     "exec": "{nodeLoader} {path}",
     "config": {
-      "devices": []
+      "devices": [],
+      "checkPing": true
     },
     "schema": {
       "type": "object",
@@ -60,6 +63,12 @@
             "type": "string",
             "pattern": "^([0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}$"
           }
+        },
+        "checkPing": {
+          "type": "boolean",
+          "label": "Ping devices",
+          "description": "Check if devices respond to ping",
+          "default": true
         }
       }
     }
