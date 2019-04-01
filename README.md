@@ -1,6 +1,6 @@
 # wake-on-lan-adapter
 
-Wake-on-LAN adapter for the [Mozilla IoT gateway](https://iot.mozilla.org).
+Wake-on-LAN adapter for the [Mozilla WebThings Gateway](https://iot.mozilla.org).
 
 ## Usage
 
