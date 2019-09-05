@@ -1,7 +1,7 @@
 {
   "name": "wake-on-lan-adapter",
   "display_name": "Wake-on-LAN",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Wake-on-LAN adapter.",
   "main": "index.js",
   "scripts": {
@@ -27,11 +27,11 @@
   "dependencies": {
     "local-devices": "^2.0.0",
     "ping": "^0.2.2",
-    "wol": "^1.0.5"
+    "wol": "^1.0.6"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.15.1"
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.3.0"
   },
   "files": [
     "LICENSE",

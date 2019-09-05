@@ -31,18 +31,26 @@ class WakeOnLanAdapter extends Adapter {
       manifest.moziot.config.checkPing :
       true;
 
-    findDevices()
-      .catch(console.warn)
-      .then((devices) => {
+    if (manifest.moziot.config.devices.length) {
+      if (this.checkPing) {
+        findDevices()
+          .catch(console.warn)
+          .then((devices) => {
+            for (const mac of manifest.moziot.config.devices) {
+              const arpDevice =
+                WakeOnLanAdapter.getDeviceInfoFromArpTable(mac, devices);
+              this.addDevice(arpDevice);
+            }
+          })
+          .then(() => {
+            this.startPingChecker();
+          });
+      } else {
         for (const mac of manifest.moziot.config.devices) {
-          const arpDevice =
-            WakeOnLanAdapter.getDeviceInfoFromArpTable(mac, devices);
+          const arpDevice = WakeOnLanAdapter.getDeviceInfoFromArpTable(mac);
           this.addDevice(arpDevice);
         }
-      });
-
-    if (this.checkPing && manifest.moziot.config.devices.length) {
-      this.startPingChecker();
+      }
     }
   }
 
