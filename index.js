@@ -1,9 +1,10 @@
 'use strict';
 
-const {Adapter, Device, Property} = require('gateway-addon');
-const wol = require('wol');
+const {Adapter, Database, Device, Property} = require('gateway-addon');
 const findDevices = require('local-devices');
+const manifest = require('./manifest.json');
 const {promise: ping} = require('ping');
+const wol = require('wol');
 
 class WakeOnLanAdapter extends Adapter {
   static getDeviceInfoFromArpTable(mac, arpDevices = []) {
@@ -23,35 +24,40 @@ class WakeOnLanAdapter extends Adapter {
     };
   }
 
-  constructor(addonManager, manifest) {
-    super(addonManager, manifest.name, manifest.name);
+  constructor(addonManager) {
+    super(addonManager, manifest.id, manifest.id);
     addonManager.addAdapter(this);
 
-    this.checkPing = manifest.moziot.config.hasOwnProperty('checkPing') ?
-      manifest.moziot.config.checkPing :
-      true;
+    const db = new Database(manifest.id);
+    db.open().then(() => {
+      return db.loadConfig();
+    }).then((config) => {
+      this.checkPing = config.hasOwnProperty('checkPing') ?
+        config.checkPing :
+        true;
 
-    if (manifest.moziot.config.devices.length) {
-      if (this.checkPing) {
-        findDevices()
-          .catch(console.warn)
-          .then((devices) => {
-            for (const mac of manifest.moziot.config.devices) {
-              const arpDevice =
-                WakeOnLanAdapter.getDeviceInfoFromArpTable(mac, devices);
-              this.addDevice(arpDevice);
-            }
-          })
-          .then(() => {
-            this.startPingChecker();
-          });
-      } else {
-        for (const mac of manifest.moziot.config.devices) {
-          const arpDevice = WakeOnLanAdapter.getDeviceInfoFromArpTable(mac);
-          this.addDevice(arpDevice);
+      if (config.devices.length) {
+        if (this.checkPing) {
+          findDevices()
+            .catch(console.warn)
+            .then((devices) => {
+              for (const mac of config.devices) {
+                const arpDevice =
+                  WakeOnLanAdapter.getDeviceInfoFromArpTable(mac, devices);
+                this.addDevice(arpDevice);
+              }
+            })
+            .then(() => {
+              this.startPingChecker();
+            });
+        } else {
+          for (const mac of config.devices) {
+            const arpDevice = WakeOnLanAdapter.getDeviceInfoFromArpTable(mac);
+            this.addDevice(arpDevice);
+          }
         }
       }
-    }
+    }).catch(console.error);
   }
 
   addDevice(arpDevice) {
@@ -175,6 +181,6 @@ class PingProperty extends Property {
   }
 }
 
-module.exports = (addonManager, manifest) => {
-  new WakeOnLanAdapter(addonManager, manifest);
+module.exports = (addonManager) => {
+  new WakeOnLanAdapter(addonManager);
 };

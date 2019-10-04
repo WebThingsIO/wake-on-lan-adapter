@@ -1,0 +1,47 @@
+{
+  "author": "Mozilla IoT",
+  "description": "Wake-on-LAN adapter.",
+  "gateway_specific_settings": {
+    "webthings": {
+      "exec": "{nodeLoader} {path}",
+      "primary_type": "adapter",
+      "strict_max_version": "*",
+      "strict_min_version": "0.10.0"
+    }
+  },
+  "homepage_url": "https://github.com/mozilla-iot/wake-on-lan-adapter#readme",
+  "id": "wake-on-lan-adapter",
+  "license": "MPL-2.0",
+  "manifest_version": 1,
+  "name": "Wake-on-LAN",
+  "options": {
+    "default": {
+      "devices": [],
+      "checkPing": true
+    },
+    "schema": {
+      "type": "object",
+      "required": [
+        "devices"
+      ],
+      "properties": {
+        "devices": {
+          "type": "array",
+          "items": {
+            "description": "MAC address",
+            "type": "string",
+            "pattern": "^([0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}$"
+          }
+        },
+        "checkPing": {
+          "type": "boolean",
+          "label": "Ping devices",
+          "description": "Check if devices respond to ping",
+          "default": true
+        }
+      }
+    }
+  },
+  "short_name": "Wake-on-LAN",
+  "version": "0.2.0"
+}

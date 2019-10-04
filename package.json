@@ -1,7 +1,7 @@
 {
   "name": "wake-on-lan-adapter",
   "display_name": "Wake-on-LAN",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Wake-on-LAN adapter.",
   "main": "index.js",
   "scripts": {
@@ -31,12 +31,14 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
-    "eslint": "^6.3.0"
+    "eslint": "^6.5.1"
   },
   "files": [
     "LICENSE",
+    "README.md",
     "SHA256SUMS",
     "index.js",
+    "manifest.json",
     "node_modules"
   ],
   "moziot": {
