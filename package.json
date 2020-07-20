@@ -1,7 +1,6 @@
 {
   "name": "wake-on-lan-adapter",
-  "display_name": "Wake-on-LAN",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Wake-on-LAN adapter.",
   "main": "index.js",
   "scripts": {
@@ -11,13 +10,6 @@
     "type": "git",
     "url": "git+https://github.com/mozilla-iot/wake-on-lan-adapter.git"
   },
-  "keywords": [
-    "mozilla",
-    "iot",
-    "adapter",
-    "wake-on-lan",
-    "wol"
-  ],
   "author": "Mozilla IoT",
   "license": "MPL-2.0",
   "bugs": {
@@ -31,7 +23,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.4.0"
+    "eslint": "^7.5.0"
   },
   "files": [
     "LICENSE",
@@ -40,39 +32,5 @@
     "index.js",
     "manifest.json",
     "node_modules"
-  ],
-  "moziot": {
-    "api": {
-      "min": 2,
-      "max": 2
-    },
-    "plugin": true,
-    "exec": "{nodeLoader} {path}",
-    "config": {
-      "devices": [],
-      "checkPing": true
-    },
-    "schema": {
-      "type": "object",
-      "required": [
-        "devices"
-      ],
-      "properties": {
-        "devices": {
-          "type": "array",
-          "items": {
-            "description": "MAC address",
-            "type": "string",
-            "pattern": "^([0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}$"
-          }
-        },
-        "checkPing": {
-          "type": "boolean",
-          "label": "Ping devices",
-          "description": "Check if devices respond to ping",
-          "default": true
-        }
-      }
-    }
-  }
+  ]
 }
