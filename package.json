@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/mozilla-iot/wake-on-lan-adapter#readme",
   "dependencies": {
-    "local-devices": "^2.0.0",
+    "local-devices": "^3.0.0",
     "ping": "^0.2.3",
     "wol": "^1.0.7"
   },
