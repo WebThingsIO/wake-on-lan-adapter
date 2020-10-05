@@ -1,6 +1,6 @@
 {
   "name": "wake-on-lan-adapter",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Wake-on-LAN adapter.",
   "main": "index.js",
   "scripts": {
@@ -8,22 +8,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mozilla-iot/wake-on-lan-adapter.git"
+    "url": "git+https://github.com/WebThingsIO/wake-on-lan-adapter.git"
   },
-  "author": "Mozilla IoT",
+  "author": "WebThingsIO",
   "license": "MPL-2.0",
   "bugs": {
-    "url": "https://github.com/mozilla-iot/wake-on-lan-adapter/issues"
+    "url": "https://github.com/WebThingsIO/wake-on-lan-adapter/issues"
   },
-  "homepage": "https://github.com/mozilla-iot/wake-on-lan-adapter#readme",
+  "homepage": "https://github.com/WebThingsIO/wake-on-lan-adapter#readme",
   "dependencies": {
     "local-devices": "^3.0.0",
-    "ping": "^0.2.3",
+    "ping": "^0.3.0",
     "wol": "^1.0.7"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.5.0"
+    "eslint": "^7.10.0"
   },
   "files": [
     "LICENSE",

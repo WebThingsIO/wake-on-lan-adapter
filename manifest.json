@@ -1,5 +1,5 @@
 {
-  "author": "Mozilla IoT",
+  "author": "WebThingsIO",
   "description": "Wake-on-LAN adapter.",
   "gateway_specific_settings": {
     "webthings": {
@@ -9,7 +9,7 @@
       "strict_min_version": "0.10.0"
     }
   },
-  "homepage_url": "https://github.com/mozilla-iot/wake-on-lan-adapter#readme",
+  "homepage_url": "https://github.com/WebThingsIO/wake-on-lan-adapter#readme",
   "id": "wake-on-lan-adapter",
   "license": "MPL-2.0",
   "manifest_version": 1,
@@ -43,5 +43,5 @@
     }
   },
   "short_name": "Wake-on-LAN",
-  "version": "0.2.1"
+  "version": "0.2.2"
 }
